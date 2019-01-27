@@ -16,6 +16,7 @@ class DictionaryController extends Controller
     {
         $q = \request()->get('q');
         if ($q) {
+            $q = strtoupper($q);
             $result = Dictionary::where('english', 'like', "%$q%")->orWhere('persian', 'like', "%$q%")->orderBy('english')->paginate();
         }
         else {
