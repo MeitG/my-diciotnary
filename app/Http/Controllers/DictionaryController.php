@@ -55,10 +55,10 @@ class DictionaryController extends Controller
         ]);
 
         if ($request->has('save_back')) {
-            return redirect()->route('dictionary.index');
+            return redirect()->route('dictionary.index')->with('success', "New item added to your dictionary successfully");
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', "New item added to your dictionary successfully");
     }
 
     /**
@@ -104,10 +104,10 @@ class DictionaryController extends Controller
         ]);
 
         if ($request->has('edit_back')) {
-            return redirect()->route('dictionary.index');
+            return redirect()->route('dictionary.index')->with('success', "'{$dictionary->english}' updated successfully");
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', "'{$dictionary->english}' updated successfully");
     }
 
     /**
@@ -120,6 +120,6 @@ class DictionaryController extends Controller
     public function destroy(Dictionary $dictionary)
     {
         $dictionary->delete();
-        return redirect()->route('dictionary.index');
+        return redirect()->route('dictionary.index')->with('error', "'{$dictionary->english}' deleted successfully");
     }
 }
